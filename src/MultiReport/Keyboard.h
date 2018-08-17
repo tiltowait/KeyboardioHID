@@ -56,6 +56,8 @@ class Keyboard_ {
   void  releaseAll(void);
   int sendReport(void);
 
+  void setIntervalBetweenReports(uint8_t millis);
+
   boolean isKeyPressed(uint8_t k);
   boolean wasKeyPressed(uint8_t k);
   boolean isModifierActive(uint8_t k);
@@ -66,6 +68,8 @@ class Keyboard_ {
   HID_KeyboardReport_Data_t keyReport;
   HID_KeyboardReport_Data_t lastKeyReport;
  private:
+  uint8_t millisBetweenReports;
+  uint8_t sendNextReportAfterTimestamp;
   int sendReportUnchecked(void);
 };
 extern Keyboard_ Keyboard;

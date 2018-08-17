@@ -87,6 +87,7 @@ void Keyboard_::begin(void) {
   // while the sender is resetted.
   releaseAll();
   sendReportUnchecked();
+  sendNextReportAfterTimestamp= 0;
 }
 
 
@@ -96,6 +97,11 @@ void Keyboard_::end(void) {
 }
 
 int Keyboard_::sendReportUnchecked(void) {
+  	uint8_t timestamp = millis();
+	sendNextReportAfterTimestamp =  timestamp + 15;// millisBetweenReports;
+	for (uint8_t now = timestamp; now <= sendNextReportAfterTimestamp; now++) {
+		delay(1);
+	}
     return HID().SendReport(HID_REPORTID_NKRO_KEYBOARD, &keyReport, sizeof(keyReport));
 }
 
