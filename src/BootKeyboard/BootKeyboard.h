@@ -55,10 +55,10 @@ class BootKeyboard_ : public PluggableUSBModule {
 
   int sendReport(void);
 
+  boolean isModifierActive();
+  boolean wasModifierActive();
   boolean isModifierActive(uint8_t k);
   boolean wasModifierActive(uint8_t k);
-  boolean isAnyModifierActive();
-  boolean wasAnyModifierActive();
   boolean isKeyPressed(uint8_t k);
   boolean wasKeyPressed(uint8_t k);
 
